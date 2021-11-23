@@ -41,6 +41,10 @@ client.on('message', (channel, userstate, message, self) => {
         return client.say(channel, "https://bio.link/fatatmerlin");
     }
 
+    if (message === '!repo') {
+        return client.say(channel, "https://github.com/FatalMerlin/delta");
+    }
+
     // das_grill
     if (message === '!pet' && userstate.username === 'das_grill') {
         return client.say(channel, "Purrr (=^-ω-^=)");
