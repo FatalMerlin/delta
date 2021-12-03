@@ -12,11 +12,11 @@ import { getRandomInt } from './lib.js';
  * 
  * @param {string} message 
  * @param {function} replyCallback 
- * @param {object} ctx Contains user metadate
+ * @param {object} ctx Contains user metadata
  */
 export async function handle(message, replyCallback, ctx = {}) {
     if (message === "!spells" || message === '!help') {
-        return replyCallback("!ping, !trello, !discord, !instagram, !twitter, !bio, !repo, !pet, !WhereHeAt?")
+        return replyCallback("!ping, !trello, !discord, !instagram, !twitter, !bio, !github, !pet, !WhereHeAt?")
     }
 
     if (message === '!ping') {
@@ -52,7 +52,7 @@ export async function handle(message, replyCallback, ctx = {}) {
     }
 
     // das_grill
-    if (message === '!pet' && userstate.username === 'das_grill') {
+    if (message === '!pet' && ctx.username === 'das_grill') {
         const pets = [
             "Woof ▼・ᴥ・▼",
             "Oink (´・(oo)・｀)",
