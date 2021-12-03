@@ -1,6 +1,10 @@
+import { Client, Intents } from 'discord.js';
+import { handle } from './logic.js';
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const { token } = require('./discord.json');
 
-const { Client, Intents } = require('discord.js');
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES
@@ -31,10 +35,11 @@ client.on('ready', async (ctx) => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    console.log(message.content);
-    await message.reply("Hello?")
+    return handle(message.content, (response) => {
+        return message.reply(response);
+    }, { username: message.author.username })
 })
 
-exports.run = () => {
+export function run() {
     client.login(token)
 }
